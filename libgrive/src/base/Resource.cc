@@ -285,7 +285,11 @@ void Resource::FromLocal( Val& state )
 			return;
 		}
 
-		m_name = path.filename().string() ;
+                // ori 
+                // m_name = path.filename().string() ;
+                // patch // build error from boost
+                m_name = path.filename() ;
+                // end
 		m_kind = ft == FT_DIR ? "folder" : "file";
 		m_local_exists = true;
 

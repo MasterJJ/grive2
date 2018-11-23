@@ -107,8 +107,12 @@ void State::FromLocal( const fs::path& p, Resource* folder, Val& tree )
 
 	for ( fs::directory_iterator i( p ) ; i != fs::directory_iterator() ; ++i )
 	{
-		std::string fname = i->path().filename().string() ;
-		std::string path = ( folder->IsRoot() ? fname : ( folder->RelPath() / fname ).string() );
+                // ori 
+		// std::string fname = i->path().filename().string() ;
+                // patch // build error from boost
+		std::string fname = i->path().filename() ;
+                // end	
+                std::string path = ( folder->IsRoot() ? fname : ( folder->RelPath() / fname ).string() );
 		
 		if ( IsIgnore( path ) )
 			Log( "file %1% is ignored by grive", path, log::verbose ) ;
