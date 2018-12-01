@@ -27,6 +27,8 @@
 
 #include <iostream>
 #include <iterator>
+// masterj
+#include "util/Config.h"
 
 namespace po = boost::program_options;
 
@@ -73,7 +75,7 @@ const fs::path Config::Filename() const
 
 void Config::Save( )
 {
-	gr::File file( m_path.string(), 0600 ) ;
+	gr::File file( m_path.string(), DEF_FILE_CREATE_PERMISSION ) ;
 	JsonWriter wr( &file ) ;
 	m_file.Visit( &wr ) ;
 }

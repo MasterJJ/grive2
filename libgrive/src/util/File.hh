@@ -25,6 +25,9 @@
 #include "Types.hh"
 
 #include <string>
+// masterj
+
+#include "util/Config.h"
 
 struct stat ;
 
@@ -54,7 +57,8 @@ public :
 	void Swap( File& other ) ;
 
 	void OpenForRead( const fs::path& path ) ;
-	void OpenForWrite( const fs::path& path, int mode = 0600 ) ;
+	void OpenForWrite( const fs::path& path, 
+			int mode = DEF_FILE_CREATE_PERMISSION ) ;
 	void Close() ;
 	bool IsOpened() const ;
 	

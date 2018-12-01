@@ -36,17 +36,20 @@
 #include <new>
 
 #include <signal.h>
+// masterj
+#include "util/Config.h"
+
 
 namespace gr { namespace http {
 
 Download::Download( const std::string& filename ) :
-	m_file( filename, 0600 ),
+	m_file( filename, DEF_FILE_CREATE_PERMISSION ),
 	m_crypt( new crypt::MD5 )
 {
 }
 
 Download::Download( const std::string& filename, NoChecksum ) :
-	m_file( filename, 0600 )
+	m_file( filename, DEF_FILE_CREATE_PERMISSION )
 {
 }
 
