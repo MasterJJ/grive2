@@ -131,6 +131,16 @@ void File::Open( const fs::path& path, int flags, int mode )
 				<< boost::errinfo_file_name(path.string())
 		) ;
 	}
+
+
+#if DEF_FILE_CREATE_PERMISSION_FULL 
+	if ( m_fd != -1) {
+		close(m_fd);
+		chmod(path.string().c_str(), 0777);	
+		m_fd = ::open( path.string().c_str(), flags, mode ) ;
+	}
+#endif
+
 }
 
 void File::OpenForRead( const fs::path& path )
